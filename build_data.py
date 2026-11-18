@@ -1,0 +1,40 @@
+"""30 hand-written synthetic tickets with gold labels. Small and author-biased: illustration, not a benchmark."""
+import csv
+T = [
+("Production database failover not completing","Primary DB node crashed at 02:10, failover is stuck, all users cannot log in to the claims system.","Incident","P1","Infrastructure"),
+("Access request for new joiner","Please give Anita Rao read access to the finance share and the PowerBI workspace from Monday.","Service Request","P4","Access & Identity"),
+("Weekly sales report is slow","The weekly sales dashboard now takes about 4 minutes to load, it was 30 seconds before.","Incident","P3","Data & Reporting"),
+("Invoice upload failing for APAC users","Several APAC users get error 500 when uploading invoices since this morning, others are fine.","Incident","P2","Applications"),
+("Need 200GB extra storage on test server","Please extend the disk on the UAT server, project starts next month.","Service Request","P4","Infrastructure"),
+("Payments not processing in prod","Production checkout returns errors for all customers, revenue impact.","Incident","P1","Applications"),
+("Add new field to claims form","Business wants a 'priority reason' field on the claims form in the next release.","Service Request","P3","Applications"),
+("Password reset link not arriving","I requested a reset three times but no email arrives.","Incident","P3","Access & Identity"),
+("SSO login loop for the whole finance team","Finance team (about 25 people) is stuck in a login loop since the certificate update.","Incident","P2","Access & Identity"),
+("Request for monthly headcount extract","Could you send the monthly headcount extract to HR as CSV?","Service Request","P4","Data & Reporting"),
+("VPN drops every afternoon","My VPN disconnects around 3pm daily, only affects me.","Incident","P3","Infrastructure"),
+("Nightly ETL job failed, dashboards stale","The nightly load failed and executive dashboards show yesterday's numbers.","Incident","P2","Data & Reporting"),
+("Rotate service account password","Please rotate the password for the reporting service account as per policy.","Service Request","P4","Access & Identity"),
+("Typo on login page","The login page says 'Pasword'.","Incident","P4","Applications"),
+("Install Python on build agent","Need Python 3.12 on the build agent to run the new tests.","Service Request","P3","Infrastructure"),
+("It's not working again","Same problem as last week. Please fix.","Incident","P3","Applications"),
+("Network outage at data center B","All services hosted in DC-B are unreachable, monitoring shows total packet loss.","Incident","P1","Infrastructure"),
+("New report: open tickets by tower","Create a Power BI report showing open tickets by tower for the monthly review.","Service Request","P3","Data & Reporting"),
+("Search returns wrong results after release","Since yesterday's release, customer search misses recent records for all call-centre agents.","Incident","P2","Applications"),
+("Add user to distribution list","Please add Rahul to the project-alpha mailing list.","Service Request","P4","Access & Identity"),
+("Duplicate rows in customer extract","The extract contains about 50 duplicate customer rows.","Incident","P3","Data & Reporting"),
+("Disk 95% full on file server","File server disk usage is at 95 percent and growing, could fill up within days.","Incident","P2","Infrastructure"),
+("How do I export to Excel","Where is the export button in the new screen?","Service Request","P4","Applications"),
+("Wrong figures sent to regulator","Today's regulatory submission contained incorrect totals due to a faulty join, needs immediate correction.","Incident","P1","Data & Reporting"),
+("Quarterly access review support","Please provide the user-role export for system owners' quarterly review.","Service Request","P3","Access & Identity"),
+("Print layout broken on invoices","Invoices print with the logo overlapping the address.","Incident","P3","Applications"),
+("MFA codes not accepted for contractors","Contractors (around 12) cannot pass MFA since the policy change.","Incident","P2","Access & Identity"),
+("Provision test environment for Project Delta","We need a new test environment mirroring production for Delta, due in two weeks.","Service Request","P3","Infrastructure"),
+("Printer on floor 3 offline","The shared printer shows offline.","Incident","P3","Infrastructure"),
+("Dashboard colour legend unclear","The legend colours on the margin chart are hard to read.","Service Request","P4","Data & Reporting"),
+]
+with open("data/tickets.csv", "w", newline="") as f:
+    w = csv.writer(f); w.writerow(["id", "title", "description", "type", "priority", "tower"])
+    for i, t in enumerate(T, 1): w.writerow([f"T-{i:03d}", *t])
+print(len(T), "tickets")
+
+# Created by Avash Mohanty, 2026
